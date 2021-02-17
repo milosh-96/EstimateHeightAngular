@@ -1,8 +1,4 @@
-<header class="bg-blue-900 text-white mb-3">
-  <div class="container mx-auto p-3">
-    Estimate Height
-  </div>
-</header>
+<app-header></app-header>
 <section class="image-handler">
   <div class="container mx-auto p-3">
     <div class="grid grid-cols-5 gap-1">
@@ -15,24 +11,48 @@
     </div>
   </div>
 </section>
+<h2>{{activeSetter}}</h2>
+<pre>
+  x1:{{dimensions.x1}}
+  x2:{{dimensions.x2}}
+  z1:{{dimensions.z1}}
+  z2:{{dimensions.z2}}
+</pre>
+<section>
+  <div class="container p-3">
+    <div class="w-full m-3">
+      <div class="w-full">
+        <label for="">Known width/length (m): </label>
 
-<section class="image-preview">
-  <div class="container">
-    <div class="md:w-2/4 mx-auto relative">
-      <div class="absolute left-0 top-0 w-3 h-3 bg-red-700"></div>
-      <div class="absolute left-0 top-3 w-3 h-3 bg-red-700"></div>
-      <div class="absolute left-5 top-3 w-3 h-3 bg-blue-700"></div>
-      <div class="absolute left-8 top-3 w-3 h-3 bg-blue-700"></div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Saint-Peretsburg_trolleybus_BKM-321_%5E2414_-_panoramio.jpg/800px-Saint-Peretsburg_trolleybus_BKM-321_%5E2414_-_panoramio.jpg" alt="" srcset="" class="w-full">
+        <input type="number" class="
+        w-1/4
+        text-2xl
+        bg-white
+        border-gray-200
+        border
+        text-center
+        " [(ngModel)]="knownLength">
+      </div>
     </div>
+    <div class="grid grid-cols-5 gap-1">
+    <div class="col-span-5 md:col-span-3">
+      <app-image-preview-box [activeSetter]="activeSetter" (CursorPositionEvent)="receiveCursorPosition($event)"></app-image-preview-box>
+    </div>
+    <div class="col-span-5 md:col-span-2">
+      <app-measuring-tool (SetterEvent)="receiveActiveElement($event)"></app-measuring-tool>
+      <div class="w-full">
+        <button (click)="calculate()" class="button red">Calculate</button>
+      </div>
+      <div class="m-5">
+        <h2 class="text-6xl text-center">
+          {{result}}
+        </h2>
+      </div>
+    </div>
+  </div>
+
   </div>
 </section>
 
-<section class="inputs">
 
-</section>
-
-<footer class="bg-gray-900 text-white p-3">
-  Use with caution! estimated height is, well, estimated and should not be
-  used as "definite" height.
-</footer>
+<app-footer></app-footer>

@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button {
+  @apply bg-blue-400;
+  @apply text-white;
+  @apply p-3;
+  @apply block;
+  @apply w-full;
+
+}
+.button.red {
+  @apply bg-red-400;
+}
