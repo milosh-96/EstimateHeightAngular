@@ -11,7 +11,7 @@ export class ImagePreviewBoxComponent implements OnInit {
   @Output() CursorPositionEvent = new EventEmitter<string>();
   @Input() activeSetter: string;
 
-  imageUrl:string = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Ikarbus-FAP_Ik-103F_GSP_Beograd_91.jpg/350px-Ikarbus-FAP_Ik-103F_GSP_Beograd_91.jpg";
+  @Input() imageUrl:string;
 
 
   setCursorPosition($event): void  {

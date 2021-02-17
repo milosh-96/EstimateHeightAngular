@@ -24,6 +24,7 @@ export class AppComponent {
   }
 
   activeSetter:string = "";
+  imageUrl:string = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Ikarbus-FAP_Ik-103F_GSP_Beograd_91.jpg/350px-Ikarbus-FAP_Ik-103F_GSP_Beograd_91.jpg";
   result:number = 0;
 
   receiveCursorPosition($event):void {
