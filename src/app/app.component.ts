@@ -14,7 +14,7 @@ interface Dimensions {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'EstimateHeightApp';
+  title = 'Estimate Height of Builidngs and other objects';
 
   /**
    *
