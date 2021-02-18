@@ -1,58 +1,60 @@
-<app-header></app-header>
-<section class="image-handler">
-  <div class="container mx-auto p-3">
-    <div class="grid grid-cols-5 gap-1">
-      <div class="col-span-4">
-        <input [(ngModel)]="imageUrl" type="text" class="border-gray-100 border-2 w-full">
-      </div>
-      <div>
-        <button class="text-white bg-red-600 w-full border-2 border-gray-900">ok</button>
-      </div>
+<div (paste)="pasteImage($event)">
+  <app-header></app-header>
+  <div class="container">
+    <div class="p-3 bg-yellow-300 border border-yellow-500 animate-pulse">
+      Paste Image (CTRL+V)
     </div>
   </div>
-</section>
-<h2>{{activeSetter}}</h2>
-<pre>
-  x1:{{dimensions.x1}}
-  x2:{{dimensions.x2}}
-  z1:{{dimensions.z1}}
-  z2:{{dimensions.z2}}
-</pre>
-<section>
-  <div class="container p-3">
-    <div class="w-full m-3">
-      <div class="w-full">
-        <label for="">Known width/length (m): </label>
-
-        <input type="number" class="
-        w-1/4
-        text-2xl
-        bg-white
-        border-gray-200
-        border
-        text-center
-        " [(ngModel)]="knownLength">
-      </div>
-    </div>
-    <div class="grid grid-cols-5 gap-1">
-    <div class="col-span-5 md:col-span-3">
-      <app-image-preview-box [imageUrl]="imageUrl"  [activeSetter]="activeSetter" (CursorPositionEvent)="receiveCursorPosition($event)"></app-image-preview-box>
-    </div>
-    <div class="col-span-5 md:col-span-2">
-      <app-measuring-tool (SetterEvent)="receiveActiveElement($event)"></app-measuring-tool>
-      <div class="w-full">
-        <button (click)="calculate()" class="button red">Calculate</button>
-      </div>
-      <div class="m-5">
-        <h2 class="text-6xl text-center">
-          {{result}}
-        </h2>
-      </div>
+  <div class="container mx-auto">
+    <div class="p-3">
+      <h2>{{help()}}</h2>
     </div>
   </div>
+  <section>
+    <div class="container p-3">
+      <div class="w-full my-3">
+        <div class="w-full" [ngClass]="{'border border-red-500 animate-pulse':knownLength === 0}">
+          <label class="px-3" for="">Known width/length (m): </label>
+          <input type="number"
+          class="
+          w-1/4
+          text-2xl
+          bg-white
+          border-gray-200
+          border
+          text-center
+          p-3
+          " [(ngModel)]="knownLength">
+        </div>
+      </div>
+      <div class="grid grid-cols-5 gap-1">
+      <div class="col-span-5 md:col-span-3">
+        <app-image-preview-box [imageUrl]="imageUrl"  [activeSetter]="activeSetter" (CursorPositionEvent)="receiveCursorPosition($event)"></app-image-preview-box>
+        <div>
+          x1:{{dimensions.x1}}
+          x2:{{dimensions.x2}}
+          z1:{{dimensions.z1}}
+          z2:{{dimensions.z2}}
+        </div>
+      </div>
+      <div class="col-span-5 md:col-span-2">
+        <app-measuring-tool (SetterEvent)="receiveActiveElement($event)"></app-measuring-tool>
+        <div class="w-full">
+          <button (click)="calculate()" class="button red">Calculate</button>
+        </div>
+        <div class="m-5">
+          <h2 class="text-6xl text-center">
+            {{result}}
+          </h2>
+        </div>
+      </div>
+    </div>
 
-  </div>
-</section>
+    </div>
+  </section>
 
 
-<app-footer></app-footer>
+  <app-footer></app-footer>
+
+</div>
+

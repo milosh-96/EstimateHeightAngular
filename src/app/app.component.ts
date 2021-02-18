@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 interface Dimensions {
   x1:number,
@@ -15,6 +16,12 @@ interface Dimensions {
 export class AppComponent {
   title = 'EstimateHeightApp';
 
+  /**
+   *
+   */
+  constructor(private sanitizer: DomSanitizer) {
+  }
+
   knownLength:number = 0;
   dimensions: Dimensions = {
       "x1":0,
@@ -24,7 +31,25 @@ export class AppComponent {
   }
 
   activeSetter:string = "";
-  imageUrl:string = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Ikarbus-FAP_Ik-103F_GSP_Beograd_91.jpg/350px-Ikarbus-FAP_Ik-103F_GSP_Beograd_91.jpg";
+
+  help():string {
+    switch(this.activeSetter) {
+      case "x1":
+        return "Set width/length point 1";
+        break;
+      case "x2":
+        return "Set width/length point 2";
+        break;
+      case "z1":
+        return "Set height point 1";
+        break;
+      case "z2":
+        return "Set height point 2";
+        break;
+    }
+    return "";
+  }
+  imageUrl:any = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Ikarbus-FAP_Ik-103F_GSP_Beograd_91.jpg/350px-Ikarbus-FAP_Ik-103F_GSP_Beograd_91.jpg";
   result:number = 0;
 
   receiveCursorPosition($event):void {
@@ -48,4 +73,26 @@ export class AppComponent {
   }
 
 
+
+    pasteImage($event) {
+      const clipboardItems = $event.clipboardData.items;
+          const items = [].slice
+              .call(clipboardItems)
+              .filter(function(item) {
+                  // Filter the image items only
+                  return item.type.indexOf('image') !== -1;
+              });
+          if (items.length === 0) {
+              return;
+          }
+
+          const item = items[0];
+          // Get the blob of image
+          const blob = item.getAsFile();
+
+          this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+
+    }
 }
+
+
