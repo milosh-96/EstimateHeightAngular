@@ -49,7 +49,7 @@ export class AppComponent {
     }
     return "";
   }
-  imageUrl:any = "/jakominiplatz-2791423_960_720.jpg";
+  imageUrl:any = "https://cdn.pixabay.com/photo/2017/09/27/09/12/jakominiplatz-2791423_960_720.jpg";
   result:number = 0;
 
   receiveCursorPosition($event):void {
