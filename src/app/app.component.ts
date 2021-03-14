@@ -49,7 +49,7 @@ export class AppComponent {
     }
     return "";
   }
-  imageUrl:any = "/jakominiplatz-2791423_960_720";
+  imageUrl:any = "/jakominiplatz-2791423_960_720.jpg";
   result:number = 0;
 
   receiveCursorPosition($event):void {
